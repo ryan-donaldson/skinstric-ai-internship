@@ -93,6 +93,9 @@ export default function IntroPage() {
         <span className="header-divider" aria-hidden="true">
           ]
         </span>
+        <a className="code-link" href="#enter-code">
+          ENTER CODE
+        </a>
       </header>
 
       <p className="analysis-label">TO START ANALYSIS</p>
@@ -156,12 +159,12 @@ export default function IntroPage() {
       </Link>
 
       {isSuccess ? (
-        <button className="proceed-link" type="button">
+        <Link className="proceed-link" href="/analysis">
           PROCEED
           <span className="diamond diamond-right" aria-hidden="true">
             <span />
           </span>
-        </button>
+        </Link>
       ) : null}
     </main>
   );

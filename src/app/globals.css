@@ -1433,11 +1433,12 @@ button.analysis-menu-tile:hover {
   --progress: 0;
   position: absolute;
   top: 62%;
-  left: 82%;
+  right: 8%;
   display: flex;
-  width: min(305px, 60%);
+  /* anchored from the right so it can never overflow into the confidence list column */
+  width: min(305px, 42%);
   aspect-ratio: 1;
-  transform: translate(-50%, -50%);
+  transform: translateY(-50%);
   border-radius: 50%;
   align-items: center;
   justify-content: center;
@@ -1616,14 +1617,14 @@ button.analysis-menu-tile:hover {
   }
 
   .confidence-circle {
-    left: 66%;
-    width: min(230px, 64%);
+    right: 6%;
+    width: min(230px, 46%);
   }
 }
 
 @media (max-width: 620px) {
   .details-page {
-    min-height: 780px;
+    min-height: 0;
     overflow: auto;
   }
 
@@ -1642,12 +1643,11 @@ button.analysis-menu-tile:hover {
   }
 
   .details-workspace {
-    top: 150px;
-    right: 16px;
-    left: 16px;
+    position: static;
     display: grid;
     grid-template-columns: 1fr;
     min-height: 0;
+    margin: 150px 16px 0;
     transform: none;
   }
 
@@ -1682,7 +1682,7 @@ button.analysis-menu-tile:hover {
   }
 
   .confidence-circle {
-    left: 72%;
+    right: 8%;
     width: 145px;
   }
 
@@ -1692,21 +1692,23 @@ button.analysis-menu-tile:hover {
 
   .details-instruction {
     position: static;
-    margin: 570px 16px 88px;
+    margin: 24px 16px;
     transform: none;
     text-align: center;
     font-size: 11px;
   }
 
   .details-page .back-link {
-    bottom: 24px;
-    left: 16px;
+    position: static;
+    float: left;
+    margin: 0 0 24px 16px;
     font-size: 12px;
   }
 
   .details-actions {
-    right: 16px;
-    bottom: 22px;
+    position: static;
+    float: right;
+    margin: 0 16px 24px 0;
     gap: 8px;
   }
 }
@@ -1809,8 +1811,17 @@ button.analysis-menu-tile:hover {
 }
 
 .camera-page-background {
+  position: absolute;
+  inset: 0;
   z-index: -1;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+}
+
+.camera-page-video {
+  transform: scaleX(-1);
+  background: #000;
 }
 
 .great-shot {
@@ -1823,6 +1834,61 @@ button.analysis-menu-tile:hover {
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.5px;
+}
+
+.camera-error {
+  width: min(420px, 80vw);
+  text-align: center;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.85);
+  padding: 12px 16px;
+}
+
+.camera-page.camera-live .site-header .brand,
+.camera-page.camera-live .site-header .header-divider,
+.camera-page.camera-live .site-header .header-section,
+.camera-page.camera-live .take-picture-control,
+.camera-page.camera-live .capture-tips p,
+.camera-page.camera-live .capture-tips li,
+.camera-page.camera-live .proceed-link {
+  color: #fff;
+  font-weight: 700;
+}
+
+.camera-page.camera-live .site-header,
+.camera-page.camera-live .take-picture-control,
+.camera-page.camera-live .capture-tips,
+.camera-page.camera-live .great-shot:not(.camera-error),
+.camera-page.camera-live .proceed-link {
+  background: rgba(120, 120, 120, 0.55);
+  padding: 10px 16px;
+}
+
+.camera-page.camera-live .site-header {
+  background: none;
+  padding: 0;
+  right: auto;
+  width: fit-content;
+}
+
+.camera-page.camera-live .take-picture-control {
+  padding: 12px 20px;
+}
+
+.camera-page.camera-live .tip-diamond {
+  border-color: #fff;
+}
+
+.camera-page.camera-live .diamond-left span {
+  border-right-color: #fff;
+}
+
+.camera-page.camera-live .diamond-right span {
+  border-left-color: #fff;
+}
+
+.camera-page.camera-live .proceed-link .diamond {
+  border-color: #fff;
 }
 
 .take-picture-control {

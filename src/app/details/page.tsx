@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import type { CSSProperties } from "react";
 
@@ -94,6 +95,7 @@ function initialSelections(predictions: Predictions) {
 }
 
 export default function DetailsPage() {
+  const router = useRouter();
   const [predictions, setPredictions] = useState<Predictions | null>(null);
   const [selectedValues, setSelectedValues] = useState<
     Record<Category, string>
@@ -140,6 +142,7 @@ export default function DetailsPage() {
       "actualDemographics",
       JSON.stringify(selectedValues),
     );
+    router.push("/");
   };
 
   return (
